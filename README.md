@@ -1,4 +1,4 @@
-learning_material
+Learning material
 =================
 
-Code examples from the weekly meetings
+This repository will host the code examples showed in the weekly meetings.
