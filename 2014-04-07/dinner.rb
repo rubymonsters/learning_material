@@ -1,5 +1,3 @@
-dinner.rb
-
 @hause = "Travis"
 def dinner(guests)
 	name = "Brigitte"
