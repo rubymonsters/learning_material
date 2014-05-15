@@ -3,8 +3,8 @@ class Mailbox
 		@owner = owner
 		@emails = []
 	end	
-		#put data into an instance variable so the instance can keep track of it
-	def owner   # method = attribute reader
+		
+	def owner 
 		@owner
 	end
 		
