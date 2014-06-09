@@ -96,3 +96,116 @@ elisas_mailbox.emails.each do |email|
 end
 
 puts line
+
+#------------------------from 26.05--------------------------------
+
+class EmailTextFormatter 
+
+	def initialize(all_emails)
+		@all_emails = all_emails
+	end
+
+	def column_widths
+		max_from = all_emails.map {|email| email.from.length}.max
+		max_subject = all_emails.map {|email| email.subject.length}.max
+		
+		[max_from, max_subject]
+	end
+
+	attr_reader :all_emails
+
+	def format 
+		lines = []
+		columns = ["From", "Subject"]
+		lines.push(separator)
+		
+		lines << format_line(columns)
+		
+		all_emails.each do |email|
+			lines << separator
+			lines << format_line([email.from, email.subject])
+			
+		end
+
+		lines.push(separator).join("\n")
+	end
+
+	def format_line(columns)
+		
+		titles = columns.each_with_index.map {|column, index| column.ljust(column_widths[index]) }
+		titles.push("")
+		titles.unshift("")
+		titles.join("|")
+	end
+
+	def separator
+		
+		dashes = column_widths.map {|max| "-" * max}
+		dashes.push("")
+		dashes.unshift("")
+		dashes.join("+")
+		
+	end
+end
+
+class EmailHtmlFormatter
+
+	def initialize(all_emails)
+		@all_emails = all_emails
+	end
+
+	
+	attr_reader :all_emails
+
+	def format 
+		lines = []
+		columns = ["From", "Subject"]
+		
+		lines << "<table>"
+		lines << format_header(columns)
+		
+		all_emails.each do |email|
+			lines << format_line([email.from, email.subject])
+		end
+
+		lines << "</table>"
+		lines.join("\n")
+	end
+
+	def format_header(columns)
+		"<tr><th>" + columns.join("</th><th>") + "</th></tr>"
+	end
+
+	def format_line(columns)
+		"<tr><td>" + columns.join("</td><td>") + "</td></tr>"
+	end
+	
+end
+
+puts EmailTextFormatter.new(elisas_mailbox.emails).format
+puts EmailHtmlFormatter.new(elisas_mailbox.emails).format
+
+# writing it to the file
+html = EmailHtmlFormatter.new(elisas_mailbox.emails).format
+File.open("emails.html", "w+") { |file| file.write(html)}
+
+
+require 'minitest/autorun'
+
+class TestEmailHtmlFormatter < MiniTest::Unit::TestCase
+	def setup 
+		email1 = Email.new("Heike", "Greetings from Lanzarote", {"to" => "Elisa"}, "Beautiful island!")
+		@emails = [email1]
+	end
+
+	def test_format
+		formated = EmailHtmlFormatter.new(@emails).format
+		html = "<table>\n" +
+			   "<tr><th>From</th><th>Subject</th></tr>\n" +
+			   "<tr><td>Heike</td><td>Greetings from Lanzarote</td></tr>\n" +
+			   "</table>"
+		assert_equal formated, html
+	end
+
+	
+end 
