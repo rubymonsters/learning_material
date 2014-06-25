@@ -1,0 +1,10 @@
+There are <%= all_emails.length %> emails in the mailbox
+
+<table border="1px">
+
+<tr><th>From</th><th>Subject</th></tr>
+<% all_emails.each do |email| %>
+	<tr><td><%= email.from %></td><td><%= email.subject %></td></tr>
+<% end %>
+</table>
+
