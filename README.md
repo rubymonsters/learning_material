@@ -11,5 +11,5 @@ This repository will host the code examples showed in the weekly meetings.
 ### Useful if you're starting
 
 - [Explanation of Ruby Methods](https://github.com/rubymonsters/learning_material/blob/master/2014-03-31/song.rb)
-- [Explanation of Ruby Classes](https://github.com/rubymonsters/learning_material/blob/master/2014-04-07/dinner.rb) / [Recap of Ruby Classes](https://github.com/rubymonsters/learning_material/tree/master/2014-04-14/classes_recap)
+- [Explanation of Ruby Classes](https://github.com/rubymonsters/learning_material/tree/master/2014-04-14/classes_recap)
 - [Mailbox Class](https://github.com/rubymonsters/learning_material/blob/master/2014-04-14/mailbox.rb)
