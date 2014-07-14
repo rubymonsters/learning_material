@@ -1,7 +1,5 @@
 == RAILS Hangman
 
-Note from jose: I'm not sure if this files are working.
-
 The files that you should pay attention to are ``app/controllers/hangman_controller.rb`` and ``app/views/hangman/index.html.erb``.
 
 This app should just work by running
