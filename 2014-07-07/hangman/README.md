@@ -1,12 +1,14 @@
-== RAILS Hangman
+# RAILS Hangman
 
-The files that you should pay attention to are ``app/controllers/hangman_controller.rb`` and ``app/views/hangman/index.html.erb``.
+The modified files in this project are:
+- app/controllers/hangman_controller.rb
+- app/views/hangman/index.html.erb
+- config/routes.rb
 
-This app should just work by running
+To run the app, type this commands in your terminal
 
     bundle
     rails s
-
 
 Please be aware that CSRF Protection is disabled in ``app/controllers/application_controller.rb`` :)
 
